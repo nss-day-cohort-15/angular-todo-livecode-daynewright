@@ -22,8 +22,8 @@ app.factory('ItemStorage', ($q, $http, FirebaseURL) => {
   let postNewItem = (newItem) => {
     return $q( (resolve, reject) => {
       $http.post(`${FirebaseURL}/items.json`, JSON.stringify(newItem))
-        .success( (ObjFromFirebase) => {
-          resolve(ObjFromFirebase);
+        .success( (objFromFirebase) => {
+          resolve(objFromFirebase);
         })
       .error( (error) => {
         reject(error);
@@ -31,5 +31,13 @@ app.factory('ItemStorage', ($q, $http, FirebaseURL) => {
     });
   };
 
-  return {getItemList, postNewItem};
+  let deleteItem = (itemId) => {
+    return $q((resolve, reject) => {
+      $http.delete(`${FirebaseURL}/items/${itemId}.json`)
+      .success((objFromFirebase) => resolve(objFromFirebase))
+      .error((error) => console.log(`error: ${error}`));
+    });
+  };
+
+  return {getItemList, postNewItem, deleteItem};
 });
