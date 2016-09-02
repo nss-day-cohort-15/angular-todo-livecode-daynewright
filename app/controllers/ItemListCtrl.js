@@ -1,7 +1,7 @@
 
 "use strict";
 
-app.controller('ItemListCtrl', function($scope, ItemStorage, SearchTermData){
+app.controller('ItemListCtrl', function($scope, $location, ItemStorage, SearchTermData){
   $scope.searchText = SearchTermData;
 
   ItemStorage.getItemList()
@@ -16,4 +16,9 @@ app.controller('ItemListCtrl', function($scope, ItemStorage, SearchTermData){
         .then((itemCollectionArr)=> $scope.items = itemCollectionArr);
     });
   };
+
+  $scope.itemEditView = (itemId) => {
+    $location.url(`/items/edit/${itemId}`);
+  };
+
 });

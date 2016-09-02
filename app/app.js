@@ -17,5 +17,9 @@ app.config(function($routeProvider){
     templateUrl: 'partials/item-details.html',
     controller: 'ItemViewCtrl'
   })
+  .when('/items/edit/:itemId', {
+    templateUrl: 'partials/item-edit.html',
+    controller: 'ItemEditCtrl'
+  })
   .otherwise('/items/list');
 });
