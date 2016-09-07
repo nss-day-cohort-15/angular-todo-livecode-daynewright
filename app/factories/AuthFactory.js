@@ -24,5 +24,9 @@ app.factory('AuthFactory', ()=> {
     return firebase.auth().signOut();
   };
 
-  return {createUser, loginUser, logoutUser};
+  let isAuthenticated = ()=> {
+    return (firebase.auth().currentUser) ? true : false;
+  };
+
+  return {createUser, loginUser, logoutUser, isAuthenticated};
 });
